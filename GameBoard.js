@@ -1,4 +1,4 @@
-class Gameboard {
+export class GameBoard {
     constructor() {
         this.board = [
             [0, 0, 0],
@@ -37,5 +37,3 @@ class Gameboard {
         return true;
     }
 }
-
-module.exports = GameBoard;

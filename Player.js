@@ -1,11 +1,16 @@
+import { GameBoard } from './GameBoard.js';
+console.log("test")
 class Player {
-    constructor(type) {
-        this.type = type;
-        this.board = new GameBoard();
+    constructor(playerType) {
+        this._type = playerType;
+        this._board = new GameBoard();
     }
-    getType() {
-        return this.type();
+    get type() {
+        return this._type;
+    }
+    get board() {
+        return this._board;
     }
 
 }
-module.exports = Player;
+export { Player };
