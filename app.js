@@ -2,5 +2,12 @@
 import { Player } from './Player.js';
 import { newGame, render } from './DomActions.js';
 
-const newGameBtn = document.querySelector('#newGame');
-newGameBtn.addEventListener('click', newGame);
+document.addEventListener("DOMContentLoaded", (event) => {
+    console.log("DOM fully loaded and parsed");
+    const newGameBtn = document.querySelector('#newGame');
+    newGameBtn.addEventListener('click', newGame);
+
+
+
+
+});

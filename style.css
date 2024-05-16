@@ -5,4 +5,12 @@
 #player1,
 #player2 {
     display: flex;
+    gap: 20px;
+}
+
+#mainContainer {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
 }
