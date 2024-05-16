@@ -16,8 +16,10 @@ export class GameBoard {
     }
     receiveAttack(row, column) {
         const ship = this.board[row][column];
+
         if (ship !== 0) {
             ship.hit();
+
             this.coords.push([row, column])
 
         } else {
@@ -25,15 +27,25 @@ export class GameBoard {
         }
     }
     allSunk() {
+
+        let count = 0;
         this.board.forEach((row) => {
             row.forEach((item) => {
+
                 if (item !== 0) {
-                    if (!item.isSunk()) {
-                        return false;
+                    console.log("item", item, item.isShipSunk())
+                    if (item.isShipSunk()) {
+                        count++;
                     }
                 }
             })
+
         })
-        return true;
+        if (count < 5) {
+            return false
+        } else {
+            return true;
+        }
+
     }
 }

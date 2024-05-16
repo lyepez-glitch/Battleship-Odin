@@ -1,5 +1,5 @@
 import { GameBoard } from './GameBoard.js';
-console.log("test")
+
 class Player {
     constructor(playerType) {
         this._type = playerType;
