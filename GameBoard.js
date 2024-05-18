@@ -1,10 +1,14 @@
 export class GameBoard {
     constructor() {
-        this.board = [
-            [0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]
-        ]
+        this.board = []
+        for (let i = 0; i < 10; i++) {
+            let row = [];
+            for (let j = 0; j < 10; j++) {
+                row.push(0);
+            }
+            this.board[i] = row;
+        }
+        console.log("board", this.board)
         this.missedAttacks = [];
         this.placed = [];
         this.coords = [];
@@ -47,7 +51,7 @@ export class GameBoard {
     randomReceiveAttack = () => {
         let randomIndex = Math.floor(Math.random() * 10);
         let randomCol = Math.floor(Math.random() * 10);
-        while (isMissed(randomIndex, randomCol) && isAttacked(randomIndex, randomCol)) {
+        while (this.isMissed(randomIndex, randomCol) && this.isAttacked(randomIndex, randomCol)) {
             randomIndex = Math.floor(Math.random() * 10);
             randomCol = Math.floor(Math.random() * 10);
         }
@@ -58,11 +62,13 @@ export class GameBoard {
         } else {
             this.missed.push(randomIndex, randomCol)
         }
+        console.log("player 1 board after computer attacks him", this.board);
+
     }
     randomPlace = (ship) => {
         let randomIndex = Math.floor(Math.random() * 10);
         let randomCol = Math.floor(Math.random() * 10);
-        while (isPlaced(randomIndex, randomCol)) {
+        while (this.isPlaced(randomIndex, randomCol)) {
             randomIndex = Math.floor(Math.random() * 10);
             randomCol = Math.floor(Math.random() * 10);
         }
@@ -71,7 +77,8 @@ export class GameBoard {
             if (randomIndex === rowIndex) {
                 row.forEach((col, colIndex) => {
                     if (randomCol === colIndex) {
-                        this.board[row][colIndex] === ship;
+                        this.board[rowIndex][colIndex] = ship;
+                        console.log("computer placed ship at row " + rowIndex + " col " + colIndex, "player 2 updated board", this.board, ship);
                     }
                 })
 
@@ -91,6 +98,7 @@ export class GameBoard {
         } else {
             this.missedAttacks.push([row, column])
         }
+        console.log("computer board after player1 attack", this.board);
     }
     allSunk() {
 

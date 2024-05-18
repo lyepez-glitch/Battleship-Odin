@@ -45,6 +45,7 @@ describe('class GameBoard', () => {
         test('class GameBoard should receive attack', () => {
             board.place(ship, 0, 0);
             board.receiveAttack(0, 0);
+            expect(ship.hit).toHaveBeenCalled();
 
             expect(ship.getHits()).toBe(1);
             board.receiveAttack(1, 1);

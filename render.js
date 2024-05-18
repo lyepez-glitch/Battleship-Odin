@@ -4,7 +4,7 @@ import { placeShip } from './placeShip.js';
 
 
 
-function render(player, id, player1, player2, player1Count, player2Count, playerCount, currTurn) {
+function render(player, id, player1, player2, count) {
     const ele = document.createElement('div');
     const mainCont = document.querySelector('#mainContainer');
 
@@ -25,6 +25,8 @@ function render(player, id, player1, player2, player1Count, player2Count, player
                 } else {
                     if (id !== 'player2') {
                         itemEle.textContent = 'ship';
+                    } else {
+                        itemEle.textContent = 'hide';
                     }
 
                 }
@@ -32,20 +34,22 @@ function render(player, id, player1, player2, player1Count, player2Count, player
             } else {
                 if (id !== 'player2') {
                     itemEle.textContent = item;
+                } else {
+                    itemEle.textContent = 'hide';
                 }
 
             }
 
             itemEle.id = rowIndex + '-' + colIndex;
             itemEle.classList.add(id);
-            if (playerCount < 5) {
+            if (count < 5) {
                 if (id !== 'player2') {
-                    itemEle.addEventListener('click', function() { placeShip(itemEle, player1, player2, player1Count, player2Count, currTurn) });
+                    itemEle.addEventListener('click', function() { placeShip(itemEle, player1, player2, count) });
                 }
 
             } else {
-                if (id !== 'player2') {
-                    itemEle.addEventListener('click', function() { manageTurn(itemEle, player1, player2, player1Count, player2Count, currTurn) });
+                if (id !== 'player1') {
+                    itemEle.addEventListener('click', function() { manageTurn(itemEle, player1, player2, count) });
                 }
 
             }
@@ -53,9 +57,7 @@ function render(player, id, player1, player2, player1Count, player2Count, player
         });
         outerDiv.appendChild(rowEle);
 
-        if (id === 'player1' && currTurn === 'player1') {
-            outerDiv.classList.add('active');
-        } else if (id === 'player2' && currTurn === 'player2') {
+        if (id === 'player1') {
             outerDiv.classList.add('active');
         }
         mainCont.appendChild(outerDiv);
