@@ -2,34 +2,6 @@ import { Ship } from './Ship.js';
 import { manageTurn } from './manageTurn.js';
 import { placeShip } from './placeShip.js';
 
-//         if (curr === player1) {
-//             //computer clicks here
-//             // const randRow = Math.random() * 3;
-//             // const randCol = Math.random() * 3;
-//             // or no click just do thesame func by copying this logic in a computer func and call that
-//             // it gets the active class
-//             // it gets random row index and col index out of the 3 rows and 9 columns
-//             // if player2 board.coords and board.missedAttacks doesn't include random rol and col
-//             //   player2.board.place(ship,randomrow,randomcol)
-//         }
-
-
-//     }
-// }
-
-// function render(player, id) {
-//
-//
-//         if (!outerDiv.classList.contains('active')) {
-//             outerDiv.classList.add('active')
-//         } else {
-//             outerDiv.classList.remove('active');
-//         }
-
-
-
-
-
 
 
 function render(player, id, player1, player2, player1Count, player2Count, playerCount, currTurn) {
@@ -46,21 +18,36 @@ function render(player, id, player1, player2, player1Count, player2Count, player
             const itemEle = document.createElement('div');
             if (item instanceof Ship) {
                 if (item.isShipSunk()) {
-                    itemEle.textContent = 'X';
+                    if (id !== 'player2') {
+                        itemEle.textContent = 'X';
+                    }
+
                 } else {
-                    itemEle.textContent = 'ship';
+                    if (id !== 'player2') {
+                        itemEle.textContent = 'ship';
+                    }
+
                 }
 
             } else {
-                itemEle.textContent = item;
+                if (id !== 'player2') {
+                    itemEle.textContent = item;
+                }
+
             }
 
             itemEle.id = rowIndex + '-' + colIndex;
             itemEle.classList.add(id);
             if (playerCount < 5) {
-                itemEle.addEventListener('click', function() { placeShip(itemEle, player1, player2, player1Count, player2Count, currTurn) });
+                if (id !== 'player2') {
+                    itemEle.addEventListener('click', function() { placeShip(itemEle, player1, player2, player1Count, player2Count, currTurn) });
+                }
+
             } else {
-                itemEle.addEventListener('click', function() { manageTurn(itemEle, player1, player2, player1Count, player2Count, currTurn) });
+                if (id !== 'player2') {
+                    itemEle.addEventListener('click', function() { manageTurn(itemEle, player1, player2, player1Count, player2Count, currTurn) });
+                }
+
             }
             rowEle.appendChild(itemEle);
         });
