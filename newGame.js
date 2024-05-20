@@ -5,14 +5,18 @@ from './render.js';
 import { Player } from './player.js';
 import { manageTurn } from './manageTurn.js';
 
+import { GameBoard } from './GameBoard.js';
+import { GameBoard2 } from './GameBoard2.js';
+import { Player2 } from './Player2.js';
+
 function newGame(player1, player2, count) {
-    player1 = new Player('Real');
-    player2 = new Player('Computer');
+    player1 = new Player('Real', new GameBoard());
+    player2 = new Player2('Computer', new GameBoard2());
     const mainCont = document.querySelector('#mainContainer');
     mainCont.innerHTML = "";
 
-    render(player1, 'player1', player1, player2, count);
-    render(player2, 'player2', player1, player2, player1Count, player2Count, player2Count, currTurn);
+    render(player1, 'player1', count);
+    render(player2, 'player2', count);
 
     const player1Board = document.querySelector('#player1');
     const player2Board = document.querySelector('#player2');

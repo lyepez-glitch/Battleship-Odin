@@ -1,4 +1,4 @@
-import { placeShip } from './placeShip';
+import { placeShip } from './placeShip.js';
 const disallowPlacingShip = () => {
     const cont = document.querySelector('#player1');
     for (let i = 0; i <= 2; i++) {
