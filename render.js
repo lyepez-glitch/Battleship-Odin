@@ -5,6 +5,7 @@ import { player1, player2 } from './app.js';
 
 
 function render(player, id, count) {
+    console.log(player, id, count)
     const ele = document.createElement('div');
     const mainCont = document.querySelector('#mainContainer');
 

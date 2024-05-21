@@ -14,7 +14,7 @@ function newGame(player1, player2, count) {
     player2 = new Player2('Computer', new GameBoard2());
     const mainCont = document.querySelector('#mainContainer');
     mainCont.innerHTML = "";
-
+    console.log("newgame");
     render(player1, 'player1', count);
     render(player2, 'player2', count);
 
